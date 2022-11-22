@@ -1,6 +1,7 @@
 using ToDoLibrary.DataAccess;
 using ToDoLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,12 @@ app.UseHttpsRedirection();
 app.MapGet("/api/Todos", async (IToDoData data) =>
 {
     var output = await data.GetAllAssigned(1);
+    return Results.Ok(output);
+});
+
+app.MapPost("/api/Todos", async (IToDoData data, [FromBody] string task) =>
+{
+    var output = await data.Create(1, task);
     return Results.Ok(output);
 });
 
