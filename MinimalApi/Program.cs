@@ -32,4 +32,10 @@ app.MapPost("/api/Todos", async (IToDoData data, [FromBody] string task) =>
     return Results.Ok(output);
 });
 
+app.MapDelete("/api/Todos/{id}", async (IToDoData data, int id) =>
+{
+    await data.Delete(1, id);
+    return Results.Ok();
+});
+
 app.Run();
