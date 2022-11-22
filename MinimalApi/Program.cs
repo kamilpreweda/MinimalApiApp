@@ -13,4 +13,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.MapGet("/api/Todo", () => new string[] { "String1", "string2" });
+app.MapGet("api/Todo{id}", (int id) => $"Id: {id}");
+
 app.Run();
